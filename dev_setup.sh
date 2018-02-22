@@ -90,4 +90,4 @@ docker start laravel-graphql-web
 echo "Installing Dependencies"
 echo "     *****     "
 echo " "
-docker exec -it laravel-graphql-web /bin/bash -c "cp .env.docker .env && cp ./dev_setup/index.html ./public/index.html && rm ./public/index.php && composer install && cp ./dev_setup/index.php ./public/index.php && rm ./public/index.html"
+docker exec -it laravel-graphql-web /bin/bash -c "cp .env.docker .env && cp ./dev_setup/index.html ./public/index.html && rm ./public/index.php && composer install && php artisan migrate && php artisan config:cache && cp ./dev_setup/index.php ./public/index.php && rm ./public/index.html"
