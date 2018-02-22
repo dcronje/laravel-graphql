@@ -111,7 +111,7 @@ To modify the addWhereToQuery and addOrderToQuery function in order to filter an
 ## Lastly
 edit:
 #### /config/graphql.php
-and add: 'App\GraphQL\{entity_name}\{entity_name}Exporter.php' to the $exporters array then cache your config as demonstrated above.
+and add: 'App\GraphQL\\{entity_name}\\{entity_name}Exporter.php' to the $exporters array then cache your config as demonstrated above.
 
 
 #### Note
