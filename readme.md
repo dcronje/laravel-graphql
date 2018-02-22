@@ -10,7 +10,7 @@
 
 ### (1): Clone the repo
 ```sh
-git clone ssh://git@gitlab.cg.sih.services:222/compare-guru/laravel-graphql-web.git
+git clone git@github.com:dcronje/laravel-graphql.git
 ```
 ### (2): Setup local certificates
 Install root ssl certificate
