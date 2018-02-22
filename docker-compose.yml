@@ -1,0 +1,14 @@
+version: '2'
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: dev.dockerfile
+    working_dir: /var/www
+    network_mode: bridge
+    external_links:
+      - mysql:mysql
+      - redis:redis
+    container_name: laravel_graphql_web
+    volumes:
+      - .:/var/www

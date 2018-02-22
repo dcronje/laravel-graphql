@@ -1,0 +1,14 @@
+[req]
+default_bits = 2048
+prompt = no
+default_md = sha256
+distinguished_name = dn
+
+[dn]
+C=ZA
+ST=Western Province
+L=Cape Town
+O=SIH
+OU=STT
+emailAddress=drew@silvertree.holdings
+CN = localhost
