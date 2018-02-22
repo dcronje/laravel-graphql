@@ -29,11 +29,6 @@ sudo update-ca-certificates
 sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ./dev_setup/local_ssl/rootCA.pem
 ```
 
-##### Windows
-```sh
-Dont use windows, it sucks. Install ubuntu.
-```
-
 ### (3): Install Docker
 * Download and install the latest version of: [Docker]
 * Make the dev_setup.sh file executable:
