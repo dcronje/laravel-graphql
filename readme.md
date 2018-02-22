@@ -55,3 +55,67 @@ echo '127.0.0.1 laravel-graphql.dev' | sudo tee -a /etc/hosts
 [Laravel]: <https://laravel.com>
 [GraphQL]: <https://github.com/Folkloreatelier/laravel-graphql>
 [Docker]: <https://docs.docker.com/>
+
+Note the example API uses google geocode API so you must set the GOOGLE_API_KEY in your .env file then run
+```sh
+docker exec -it laravel-graphql-web /bin/bash
+```
+once logged in run:
+```sh
+php artisan config:cache
+```
+
+#### OR
+
+```sh
+docker exec -it laravel-graphql-web /bin/bash -c "php artisan config:cache"
+```
+
+# Tooling
+There is an artisan command to help create new GraphQL entities:
+## To Add a New Entity
+log in to the container:
+```sh
+docker exec -it laravel-graphql-web /bin/bash
+```
+then
+```sh
+php artisan graph:create {entity_name} --lists --mtations
+```
+--mutations
+will create add / remove / update mutations with all supporting input types for your new entity
+
+--lists
+will create create getAll getOne getCount queries with all supporting input and object tyes for you new entity
+
+you will need to edit the following files (if applicable):
+
+#### /app/GraphQL/{entity_name}/Types/{entity_name}InputType.php 
+To set all the input properties for creating a new object.
+
+#### /app/GraphQL/{entity_name}/Types/{entity_name}ListFiltersType.php 
+To set all properties you may want to filter on.
+
+#### /app/GraphQL/{entity_name}/Types/{entity_name}ListOrderEnumType.php 
+To set properties you may want to order by.
+
+#### /app/GraphQL/{entity_name}/Types/{entity_name}Type.php 
+To set the properties of your new entity.
+
+#### /app/GraphQL/{entity_name}/Types/{entity_name}UpdateInputType.php 
+To set all the input properties for updating an existing object.
+
+#### /app/GraphQL/{entity_name}/Types/{entity_name}Helper.php 
+To modify the addWhereToQuery and addOrderToQuery function in order to filter and order lists.
+
+## Lastly
+edit:
+#### /config/graphql.php
+and add: 'App\GraphQL\{entity_name}\{entity_name}\Exporter.php' to the $exporters array then cache your config as demonstrated above.
+
+
+#### Note
+if you wish to use the --mutations and or the --lists options the entity name must corospond with the name of an Eloquent object
+
+
+
